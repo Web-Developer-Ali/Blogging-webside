@@ -27,6 +27,12 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 // Routes
+app.get('/', function (req, res) {
+  res.status(200).json({
+    msg: "Welcome to nodejs"
+  })
+})
+
 app.use('/api', UserRoute);
 app.use('/api', BlogsRoute);
 
