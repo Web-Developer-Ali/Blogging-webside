@@ -39,7 +39,7 @@ const CreateBlog = () => {
     if (coverImage) formData.append('coverImage', coverImage);
 
     try {
-      const response = await axios.post(`https://bloging-webside.vercel.app/api/creat/blogs`, formData, {
+      const response = await axios.post(`https://blogging-webside-backend.vercel.app/api/creat/blogs`, formData, {
         withCredentials: true
       });
       toast.success(response.data.message);

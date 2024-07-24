@@ -23,7 +23,7 @@ const UpdateBlogForm = () => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `https://bloging-webside.vercel.app/api/blog/${id}`
+          `https://blogging-webside-backend.vercel.app/api/blog/${id}`
         );
         const fetchedBlog = response.data.blog;
         setBlog(fetchedBlog);
@@ -56,7 +56,7 @@ const UpdateBlogForm = () => {
     if (coverImage) formData.append('coverImage', coverImage);
 
     try {
-      const response = await axios.put(`https://bloging-webside.vercel.app/api/blog/update/${BlogId}`, formData, {
+      const response = await axios.put(`https://blogging-webside-backend.vercel.app/api/blog/update/${BlogId}`, formData, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       });

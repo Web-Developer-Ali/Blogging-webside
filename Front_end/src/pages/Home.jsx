@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('https://bloging-webside.vercel.app/api/blogs/all');
+        const response = await axios.get('https://blogging-webside-backend.vercel.app/api/blogs/all');
         // Assuming response.data contains the blogs array
         setBlogs(response.data.blogs);
         setBlogUpdate(false) // Extracting 'blogs' array from response.data

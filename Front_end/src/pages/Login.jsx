@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        'https://bloging-webside.vercel.app/api/login/user',
+        'https://blogging-webside-backend.vercel.app/api/login/user',
         {
           email,
           password,

@@ -44,7 +44,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        'https://bloging-webside.vercel.app/api/create/user',
+        'https://blogging-webside-backend.vercel.app/api/create/user',
         formData,
         {
           withCredentials: true,

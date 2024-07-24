@@ -12,7 +12,7 @@ const BlogDetails = () => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `https://bloging-webside.vercel.app/api/blog/${id}`
+          `https://blogging-webside-backend.vercel.app/api/blog/${id}`
         );
         setBlog(response.data.blog); 
         setBlogUpdate(response.data.blog)

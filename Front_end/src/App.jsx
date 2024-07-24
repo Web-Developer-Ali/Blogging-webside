@@ -22,8 +22,9 @@ function App() {
 
   const getData = async () => {
     try {
-      const response = await axios.get(`https://bloging-webside.vercel.app/api/getUser`,{ withCredentials: true });
+      const response = await axios.get(`https://blogging-webside-backend.vercel.app/api/getUser`,{ withCredentials: true });
       setIsAuthenticated(true);
+      console.log(response)
       setUser(response.data.user);
       redirect("/"); // Navigate to the home page after successful response
     } catch (error) {

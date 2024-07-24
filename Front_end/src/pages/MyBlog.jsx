@@ -16,7 +16,7 @@ const MyBlog = () => {
   useEffect(() => {
     const fetchUserBlogs = async () => {
       try {
-        const response = await axios.get(`https://bloging-webside.vercel.app/api/blogs/user/${user._id}`);
+        const response = await axios.get(`https://blogging-webside-backend.vercel.app/api/blogs/user/${user._id}`);
         setBlogs(response.data.blogs);
         setLoading(false);
       } catch (error) {
@@ -37,7 +37,7 @@ const MyBlog = () => {
 
   const confirmDelete = async () => {
     try {
-     const responce = await axios.delete(`https://bloging-webside.vercel.app/api/blogs/${selectedBlogId}`, {
+     const responce = await axios.delete(`https://blogging-webside-backend.vercel.app/api/blogs/${selectedBlogId}`, {
         withCredentials: true,
       });
       setBlogs(blogs.filter((blog) => blog._id !== selectedBlogId));
