@@ -21,6 +21,7 @@ const BlogsController = catchAsyncErrors(async (req, res, next) => {
     const cloudinaryResponse = await uploadOnCloudinary(coverImagePath);
     cloudinary = cloudinaryResponse;
   }
+  console.log(cloudinary)
   
   await Blogs.create({
     title,
