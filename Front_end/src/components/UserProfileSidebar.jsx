@@ -10,7 +10,7 @@ const UserProfileSidebar = ({ isOpen, onClose, user }) => {
 
   const HandleLogout =async()=>{
     try {
-      const responce = await axios.get("http://localhost:3001/api/Logout/user",{withCredentials: true })
+      const responce = await axios.get("https://blogging-webside-backend.vercel.app/api/Logout/user",{withCredentials: true })
       redirect("/login")
       toast.success(responce.data.message)
       setIsAuthenticated(false)
