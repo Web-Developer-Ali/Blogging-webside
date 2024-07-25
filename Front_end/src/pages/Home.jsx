@@ -5,6 +5,7 @@ import { context } from '../main';
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { setBlogUpdate } = useContext(context);
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -12,13 +13,19 @@ const Home = () => {
         const response = await axios.get('https://blogging-webside-backend.vercel.app/api/blogs/all');
         setBlogs(response.data.blogs);
         setBlogUpdate(false)
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching blogs:', error);
+        setLoading(false);
       }
     };
 
     fetchBlogs();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container mx-auto p-4 bg-white dark:bg-gray-900 min-h-screen">
