@@ -16,15 +16,16 @@ const createUser = catchAsyncErrors(async (req, res, next) => {
   if (CheckUserExsitence) {
     return next(new ErrorHandler("User Already Registered", 400));
   }
-  const avatarLocalPath = req.file?.path;
-  if (!avatarLocalPath) {
+  const fileBuffer = req.file?.buffer;
+  if (!fileBuffer) {
     return next(new ErrorHandler("Avatar image is required", 400));
   }
 
-  const avatar = await uploadOnCloudinary(avatarLocalPath);
+  const avatar = await uploadOnCloudinary(fileBuffer);
   if (!avatar) {
     throw new ApiError(400, "Failed to upload avatar image to Cloudinary");
   }
+  req.file.buffer = null;
   const registerUser = await User.create({
     FirstName,
     LastName,

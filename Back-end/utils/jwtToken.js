@@ -5,8 +5,8 @@ export const jwtToken = (user, message, statusCode, res) => {
     .cookie("User", token, {
       expires: new Date(Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
       httpOnly: true,
-      secure: process.env.NODE_ENV, // Secure cookies in production
-      sameSite: 'None' // Necessary for cross-site cookie sharing
+      secure: process.env.NODE_ENV,
+      sameSite: 'None' 
     })
     .json({
       success: true,

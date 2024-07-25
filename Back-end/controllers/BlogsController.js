@@ -16,13 +16,12 @@ const BlogsController = catchAsyncErrors(async (req, res, next) => {
 
   // Check if coverImage is provided
   let cloudinary = { public_id: "", secure_url: "" };
-  const coverImagePath = req.file?.path;
-  if (coverImagePath) {
-    const cloudinaryResponse = await uploadOnCloudinary(coverImagePath);
+  const fileBuffer = req.file?.buffer;
+  if (fileBuffer) {
+    const cloudinaryResponse = await uploadOnCloudinary(fileBuffer);
     cloudinary = cloudinaryResponse;
   }
-  console.log(cloudinary)
-  
+  req.file.buffer = null;
   await Blogs.create({
     title,
     content,
@@ -120,15 +119,16 @@ const updateBlog = async (req, res, next) => {
     // Handle cover image update
     let coverImage = blog.coverImage;
     if (req.file) {
-      const coverImagePath = req.file.path;
+      const fileBuffer = req.file?.buffer;
       if (coverImage.public_id) {
         await deleteFromCloudinary(coverImage.public_id);
       }
-      const cloudinaryResponse = await uploadOnCloudinary(coverImagePath);
+      const cloudinaryResponse = await uploadOnCloudinary(fileBuffer);
       coverImage = {
         public_id: cloudinaryResponse.public_id,
         url: cloudinaryResponse.secure_url,
       };
+      req.file.buffer = null;
     }
 
     // Update blog details
